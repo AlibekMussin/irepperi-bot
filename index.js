@@ -17,10 +17,10 @@ bot.on('message', async (msg) => {
 
   if (text == '/start')
   {
-    await bot.sendMessage(chatId, 'Нажмите на кнопку Меню и выберите товары, которые вам нужны', {
+    await bot.sendMessage(chatId, 'Нажмите на кнопку Каталог товаров и выберите товары, которые вам нужны', {
       reply_markup:{
         inline_keyboard: [
-          [{text: "Меню", web_app:{url: webAppUrl }}]
+          [{text: "Каталог товаров", web_app:{url: webAppUrl }}]
         ]
       }
     });    
