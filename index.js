@@ -25,25 +25,7 @@ bot.on('message', async (msg) => {
       }
     });    
   }
-
   
-    if (msg?.web_app_data?.data)
-    {
-      try {
-        const data = JSON.parse(msg?.web_app_data?.data);
-        console.log(data);
-        await bot.sendMessage(chatId, 'Data accepted: ' + data?.country+ ', '+ data?.street+ ', '+ data?.subject);
-        setTimeout(async()=>{
-          await bot.sendMessage(chatId, 'Инфа в этом чате будет')
-        }, 3000);
-
-      }
-      catch (e){
-        console.log(e);
-
-      }
-      
-    }
 });
 
 app.post('/web-data', async (req, res) => {
@@ -57,7 +39,7 @@ app.post('/web-data', async (req, res) => {
           id: queryId,
           title: 'Успешная покупка',
           input_message_content: {
-              message_text: ` Поздравляю с покупкой, вы приобрели товар на сумму ${totalPrice}, ${products.map(item => item.title).join(', ')}`
+              message_text: `Поздравляем с покупкой, вы приобрели товаров на сумму ${totalPrice} тнг. В том числе:\n\n${products.map(item => (item.title+' ('+item.price+')')).join('\n ')}`
           }
       })
       return res.status(200).json({});
