@@ -31,8 +31,9 @@ bot.on('message', async (msg) => {
 app.post('/web-data', async (req, res) => {
   console.log('1111');
   console.log(req.body);
-  const {queryId, title, text, number, payment, token} = req.body;
+  const {queryId, title, text, number, payment, products, token} = req.body;
   console.log(queryId);
+  console.log('products', products);
   try {
     const message_text = title+'\n'+text+'\n'+number+'\n'+payment;
       await bot.answerWebAppQuery(queryId, {
