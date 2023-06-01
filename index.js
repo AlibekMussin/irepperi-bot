@@ -36,7 +36,7 @@ app.post('/web-data', async (req, res) => {
   console.log('products', products);
   
   const message_products = products.map((product) => {
-    return `${product.product_name}. Количество: ${product.products_count}. Стоимость: ${product.common_price} тнг.`;
+    return `${product.product_name}, кол-во: ${product.products_count}, стоимость: ${product.common_price} тнг.`;
   }).join('\n');
   let  message_delivery = '';
   if (delivery>0)
