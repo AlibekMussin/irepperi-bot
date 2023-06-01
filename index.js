@@ -31,11 +31,22 @@ bot.on('message', async (msg) => {
 app.post('/web-data', async (req, res) => {
   console.log('1111');
   console.log(req.body);
-  const {queryId, title, text, number, payment, products, token} = req.body;
+  const {queryId, title, text, number, payment, products, token, total, delivery } = req.body;
   console.log(queryId);
   console.log('products', products);
+  
+  const message_products = products.map((product) => {
+    return `${product.product_name}. Количество: ${product.products_count}). Стоимость: ${product.common_price} тнг.`;
+  }).join('\n');
+  let  message_delivery = '';
+  if (delivery>0)
+  {
+    message_delivery = ' (В том числе доставка: '+delivery+' тнг.)';
+  }
+  const message_total = '\nОбщая стоимость: '+total+' тнг'+message_delivery;
+
   try {
-    const message_text = title+'\n'+text+'\n'+number+'\n'+payment;
+    const message_text = title+'\n\nВы приобретаете:\n'+message_products+message_total+'\n\n'+text+'\n'+number+'\n'+payment;
       await bot.answerWebAppQuery(queryId, {
           type: 'article',
           id: queryId,
