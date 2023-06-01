@@ -34,7 +34,7 @@ app.post('/web-data', async (req, res) => {
   const {queryId, products = [], totalPrice, token} = req.body;
   console.log(queryId);
   try {
-    const message_text = `Поздравляем с покупкой. Вы приобрели товаров на сумму ${totalPrice} тнг. В том числе:\n\n${products.map(item => (item.title+' ('+item.price+')')).join('\n')} \nтокен: ${token} `;
+    const message_text = title+'\n'+text+'\n'+number+'\n'+payment;
       await bot.answerWebAppQuery(queryId, {
           type: 'article',
           id: queryId,
